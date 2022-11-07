@@ -2,12 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-# Create your models here.
-
 REQUEST_STATUS = ((0, 'Pending'), (1, 'Approved'), (3, 'Denied'))
 
 
 class Booking(models.Model):
+    reference = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=200, unique=True)
     booking_date = models.DateField()
     party_of = models.IntegerField(
         default=2,
@@ -17,7 +17,6 @@ class Booking(models.Model):
         ]
      )
     notes = models.CharField(max_length=500)
-    reference = models.CharField(max_length=50)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_on = models.DateTimeField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
