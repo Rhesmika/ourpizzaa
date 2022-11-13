@@ -6,6 +6,7 @@ REQUEST_STATUS = ((0, 'Pending'), (1, 'Approved'), (3, 'Denied'))
 
 
 class Booking(models.Model):
+    name = "Unknown"
     reference = models.CharField(max_length=50)
     slug = models.SlugField(max_length=200, unique=True)
     booking_date = models.DateField()
