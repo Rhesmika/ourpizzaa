@@ -10,3 +10,7 @@ class bookingAdmin(SummernoteModelAdmin):
     prepopulated_fields = {'slug': ('reference',)}
     list_filter = ('status', 'booking_date', 'author')
     summernote_fields = ('notes')
+    actions = ['approve_booking']
+
+    def approve_booking(self, request, queryset):
+        queryset.update(status=1)
